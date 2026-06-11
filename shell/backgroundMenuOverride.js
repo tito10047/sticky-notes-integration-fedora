@@ -67,7 +67,9 @@ export const BackgroundMenuOverride = GObject.registerClass({
     /// @return     {boolean}  True if overriden, False otherwise.
     ///
     _isOverriden() {
-        return(Main.layoutManager._bgManagers[0].backgroundActor._backgroundMenu.numMenuItems > BackgroundMenuOverride._DEFAULT_BGMENU_ITEMS);
+        const bgMenu = Main.layoutManager._bgManagers?.[0]?.backgroundActor?._backgroundMenu;
+        if (!bgMenu) return false;
+        return bgMenu.numMenuItems > BackgroundMenuOverride._DEFAULT_BGMENU_ITEMS;
     }
 
     //--------------------------------------------------------------------------
